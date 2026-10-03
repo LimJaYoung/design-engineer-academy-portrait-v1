@@ -12,6 +12,6 @@
   <body>
     <div id="root"></div>
   <script>
-document.addEventListener('click',function(e){const a=e.target.closest('a');if(!a)return;const href=a.getAttribute('href');if(!href||!/^\/?#[a-z][a-z0-9-]*$/i.test(href))return;const section=document.getElementById(href.split('#')[1]);if(!section)return;e.preventDefault();e.stopPropagation();section.scrollIntoView({behavior:'smooth'});},true);
+document.addEventListener('click',function(e){const a=e.target.closest('a');if(!a)return;const href=a.getAttribute('href');if(href&&/^\/(resources|courses|admin)(\/|$)/.test(href)){e.preventDefault();e.stopPropagation();location.hash=href;return;}if(!href||!/^\/?#[a-z][a-z0-9-]*$/i.test(href))return;const section=document.getElementById(href.split('#')[1]);if(!section)return;e.preventDefault();e.stopPropagation();section.scrollIntoView({behavior:'smooth'});},true);
 </script></body>
 </html>
