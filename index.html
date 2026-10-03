@@ -12,6 +12,6 @@
   <body>
     <div id="root"></div>
   <script>
-document.addEventListener('click',function(e){const a=e.target.closest('a');if(!a)return;const href=a.getAttribute('href');if(href&&/^\/(resources|courses|admin)(\/|$)/.test(href)){e.preventDefault();e.stopPropagation();location.hash=href;return;}if(!href||!/^\/?#[a-z][a-z0-9-]*$/i.test(href))return;const section=document.getElementById(href.split('#')[1]);if(!section)return;e.preventDefault();e.stopPropagation();section.scrollIntoView({behavior:'smooth'});},true);
+document.addEventListener('click',function(e){const a=e.target.closest('a');if(!a)return;const href=a.getAttribute('href');if(href&&/^\/(resources|courses|admin)(\/|$)/.test(href)){e.preventDefault();e.stopPropagation();location.hash=href;return;}if(!href||!/^\/?#[a-z][a-z0-9-]*$/i.test(href))return;const section=document.getElementById(href.split('#')[1]);e.preventDefault();e.stopPropagation();if(section){section.scrollIntoView({behavior:'smooth'});return;}const id=href.split('#')[1];const watch=new MutationObserver(function(){const target=document.getElementById(id);if(target){watch.disconnect();target.scrollIntoView({behavior:'smooth'});}});watch.observe(document.getElementById('root'),{childList:true,subtree:true});location.hash='/';setTimeout(function(){watch.disconnect();},3000);},true);
 </script></body>
 </html>
